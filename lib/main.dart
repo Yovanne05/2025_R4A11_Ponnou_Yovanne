@@ -24,7 +24,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: primaryColor),
           useMaterial3: true,
         ),
-        home: HomeView(),
         initialRoute: '/',
         routes: {
           '/': (context) => const HomePage(),

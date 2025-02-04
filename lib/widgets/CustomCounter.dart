@@ -24,7 +24,7 @@ class CustomCounter extends StatelessWidget{
                     onPressed: counterViewModel.decremente,
                   ),
                   Text(
-                    '$counterViewModel.counter',
+                    '${counterViewModel.counter}',
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   Icon(
