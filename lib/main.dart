@@ -1,5 +1,7 @@
+import 'package:counter_app/viewmodels/CounterViewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:counter_app/views/HomeView.dart';
+import 'package:provider/provider.dart';
 
 const Color primaryColor = Color(0xFF2196F3);
 const String appTitle = 'Compteur App';
@@ -14,17 +16,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: appTitle,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: primaryColor),
-        useMaterial3: true,
+    return ChangeNotifierProvider(
+        create: (_) => CounterViewModel(),
+      child: MaterialApp(
+        title: appTitle,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: primaryColor),
+          useMaterial3: true,
+        ),
+        home: HomeView(),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const HomePage(),
+          '/second': (context) => const SecondPage(),
+        },
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const HomePage(),
-        '/second': (context) => const SecondPage(),
-      },
     );
   }
 }
