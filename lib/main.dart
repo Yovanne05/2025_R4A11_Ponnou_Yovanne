@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
             ],
           )
       ),
-      body: Center(Hom),
+      body: Center(child : HomeView()),
     );
 
   }
