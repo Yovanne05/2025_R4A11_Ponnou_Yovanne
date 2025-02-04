@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:tp2test/models/CounterModel.dart';
+
+import '../models/CounterModel.dart';
 
 class CounterViewModel extends ChangeNotifier{
   CounterModel _counterModel = CounterModel();
