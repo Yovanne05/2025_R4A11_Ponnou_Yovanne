@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:counter_app/views/HomeView.dart';
 
 const Color primaryColor = Color(0xFF2196F3);
 const String appTitle = 'Compteur App';
@@ -80,47 +81,7 @@ class _HomePageState extends State<HomePage> {
             ],
           )
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Padding(
-              padding: const EdgeInsets.all(50.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.remove),
-                    onPressed: _decrementCounter,
-                  ),
-                  Text(
-                    '$_counter',
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
-                  Icon(
-                    Icons.favorite,
-                    color: _counter < 0 ? Colors.black : Colors.red,
-                    size: 50,
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.add),
-                    onPressed: _incrementCounter,
-                  ),
-                ],
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/second');
-              },
-              child: const Text('Aller à la deuxième page'),
-            ),
-          ],
-        ),
-      ),
+      body: Center(Hom),
     );
 
   }

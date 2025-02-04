@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-
+import 'package:flutter/foundation.dart';
 import '../models/CounterModel.dart';
 
 class CounterViewModel extends ChangeNotifier{
