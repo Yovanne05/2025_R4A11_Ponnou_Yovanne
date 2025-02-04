@@ -44,25 +44,6 @@ class HomePage extends StatefulWidget {
  * Etat mutable de la page d'accueil
  */
 class _HomePageState extends State<HomePage> {
-  int _counter = 0;
-
-  //Ici, les méthodes et fonctions qui font varier l'état de votre page d'accueil
-
-  // Méthode d'incrémentation du compteur
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  // Méthode de décrémentation du compteur
-  void _decrementCounter() {
-    setState(() {
-      _counter--;
-    });
-  }
-
-  // Fonction build qui construit l'UI associé à l'état de votre page
   @override
   Widget build(BuildContext context) {
     return Scaffold(
