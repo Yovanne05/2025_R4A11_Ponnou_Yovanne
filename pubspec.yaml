@@ -20,3 +20,15 @@ flutter:
   uses-material-design: true
   assets:
     - assets/logo.png
+    - assets/bomb.png
+    - assets/case0.png
+    - assets/case1.png
+    - assets/case2.png
+    - assets/case3.png
+    - assets/case4.png
+    - assets/case5.png
+    - assets/case6.png
+    - assets/case7.png
+    - assets/case8.png
+    - assets/explosion.png
+    - flag.png
