@@ -33,31 +33,31 @@ class GameViewModel extends ChangeNotifier{
   Image getIcon(String iconName){
     switch(iconName){
       case("bomb"):
-        return Image.asset("assets/bomb.png");
+        return Image.asset("assets/bomb.png", height: 40);
       case("case0"):
-        return Image.asset("assets/case0.png");
+        return Image.asset("assets/case0.png", height: 40);
       case("case1"):
-        return Image.asset("assets/case1.png");
+        return Image.asset("assets/case1.png", height: 40);
       case("case2"):
-        return Image.asset("assets/case2.png");
+        return Image.asset("assets/case2.png", height: 40);
       case("case3"):
-        return Image.asset("assets/case3.png");
+        return Image.asset("assets/case3.png", height: 40);
       case("case4"):
-        return Image.asset("assets/case4.png");
+        return Image.asset("assets/case4.png", height: 40);
       case("case5"):
-        return Image.asset("assets/case5.png");
+        return Image.asset("assets/case5.png", height: 40);
       case("case6"):
-        return Image.asset("assets/case6.png");
+        return Image.asset("assets/case6.png", height: 40);
       case("case7"):
-        return Image.asset("assets/case7.png");
+        return Image.asset("assets/case7.png", height: 40);
       case("case8"):
-        return Image.asset("assets/case8.png");
+        return Image.asset("assets/case8.png", height: 40);
       case("eplosion"):
-        return Image.asset("assets/explosion.png");
+        return Image.asset("assets/explosion.png", height: 40);
       case("flag"):
-        return Image.asset("assets/flag.jpg");
+        return Image.asset("assets/flag.jpg", height: 40);
       default:
-        return Image.asset("assets/case0.png");
+        return Image.asset("assets/case0.png", height: 40);
     }
   }
 
