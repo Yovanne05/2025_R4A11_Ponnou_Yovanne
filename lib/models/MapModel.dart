@@ -32,7 +32,6 @@ de la grille
   méthode qui permet d’affecter des chiffres aux cases
    */
   void initNumbers() {
-    int cptCases = 0;
     for (int col = 0; col < this._cases.length; col++) {
       for (int line = 0; line < this._cases[col].length; line++) {
         this._cases[col][line].number = this._computeNumber(col, line);
@@ -50,9 +49,9 @@ autour d’une case
     bool haut = this._trygetCaseAndHaveBomb(col++, line);
     bool hautDroite = this._trygetCaseAndHaveBomb(col++, line++);
     bool droite = this._trygetCaseAndHaveBomb(col, line++);
-    bool Basdroite = this._trygetCaseAndHaveBomb(--col, line++);
-    bool bas = this._trygetCaseAndHaveBomb(--col, line);
-    bool basGauche = this._trygetCaseAndHaveBomb(--col, line--);
+    bool Basdroite = this._trygetCaseAndHaveBomb(col--, line++);
+    bool bas = this._trygetCaseAndHaveBomb(col--, line);
+    bool basGauche = this._trygetCaseAndHaveBomb(col--, line--);
     bool gauche = this._trygetCaseAndHaveBomb(col, line--);
     bool Hautgauche = this._trygetCaseAndHaveBomb(col++, line--);
 
@@ -79,20 +78,94 @@ autour d’une case
   fonction qui retourne un bool si la case existe et à une bombe
    */
   bool _trygetCaseAndHaveBomb(int col, int line){
-    CaseModel c = this._cases[col][line];
-    return this._tryGetCase(c) && this._haveBombe(c);
+    return this._tryGetCase(col, line) && this._haveBombe(col, line);
   }
 
   /*
   renvoie un bool afin de savoir si la case contient une bombe
    */
-  bool _haveBombe(CaseModel c){
-    return c.hasBomb;
+  bool _haveBombe(int col, int line){
+    return this._cases[col][line].hasBomb;
   }
   /*
   permet de récupérer une case si elle existe
    */
-  bool _tryGetCase(CaseModel c){
-    return true;
+  bool _tryGetCase(int col, int line) {
+    try {
+      CaseModel c = this._cases[col][line];
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  /*
+  méthode qui génère l’entièreté des cases et leur contenu
+   */
+  void generateMap(){
+    this.initCases();
+    this.initBomb();
+    this.initNumbers();
+  }
+
+  /*
+  méthode qui permet de dévoiler une case
+   */
+  void reveal(CaseModel c){
+    c.hiden=true;
+  }
+
+  /*
+  méthode qui permet de dévoiler toutes les cases de la grille.
+   */
+  void revealAll(){
+    for(List<CaseModel> listeCases in this._cases){
+      for(CaseModel c in listeCases){
+        reveal(c);
+      }
+    }
+  }
+
+  /*
+  méthode qui permet de déclencher une explosion dans une case
+   */
+  void explode(CaseModel c){
+    if(c.hasBomb){
+      c.hasExploded=true;
+    }
+  }
+
+  /*
+   permet de définir l’état du drapeau
+   */
+  void toggleFlag(CaseModel c){
+    bool ancienstatut = c.hasFlag;
+    c.hasFlag = !ancienstatut;
+  }
+
+  List<List<CaseModel>> get cases => _cases;
+
+  get nbBomb => _nbBomb;
+
+  get nbCol => _nbCol;
+
+  int get nbLine => _nbLine;
+
+  CaseModel getCaseModel(int col, int line) => this._cases[col][line];
+
+  set cases(List<List<CaseModel>> value) {
+    _cases = value;
+  }
+
+  set nbBomb(value) {
+    _nbBomb = value;
+  }
+
+  set nbCol(value) {
+    _nbCol = value;
+  }
+
+  set nbLine(int value) {
+    _nbLine = value;
   }
 }
