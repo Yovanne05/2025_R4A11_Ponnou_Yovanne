@@ -21,6 +21,17 @@ class GameViewModel extends ChangeNotifier{
         this._mapModel.reveal(c);
       }
     }
+    notifyListeners();
+  }
+
+  void onLongPress(int col, int line){
+    CaseModel c = this._mapModel.getCaseModel(col, line);
+    this._mapModel.toggleFlag(c);
+    notifyListeners();
+  }
+
+  void getIcon(){
+
   }
 
 }
