@@ -27,4 +27,72 @@ de la grille
       this._cases[line][col].hasBomb = true;
     }
   }
+
+  /*
+  méthode qui permet d’affecter des chiffres aux cases
+   */
+  void initNumbers() {
+    int cptCases = 0;
+    for (int col = 0; col < this._cases.length; col++) {
+      for (int line = 0; line < this._cases[col].length; line++) {
+        this._cases[col][line].number = this._computeNumber(col, line);
+      }
+    }
+  }
+
+  /*
+  permet de calculer le nombre de bombes qu’il y a
+autour d’une case
+   */
+  int _computeNumber(int col, int line){
+    int nombreBombeAutour = 0;
+
+    bool haut = this._trygetCaseAndHaveBomb(col++, line);
+    bool hautDroite = this._trygetCaseAndHaveBomb(col++, line++);
+    bool droite = this._trygetCaseAndHaveBomb(col, line++);
+    bool Basdroite = this._trygetCaseAndHaveBomb(--col, line++);
+    bool bas = this._trygetCaseAndHaveBomb(--col, line);
+    bool basGauche = this._trygetCaseAndHaveBomb(--col, line--);
+    bool gauche = this._trygetCaseAndHaveBomb(col, line--);
+    bool Hautgauche = this._trygetCaseAndHaveBomb(col++, line--);
+
+    List<bool> listesCoinsBombCase = [
+      haut,
+      hautDroite,
+      droite,
+      Basdroite,
+      bas,
+      basGauche,
+      gauche,
+      Hautgauche
+    ];
+
+    for(bool caseExistAndhasBomb in listesCoinsBombCase){
+      if(caseExistAndhasBomb){
+        nombreBombeAutour++;
+      }
+    }
+    return nombreBombeAutour;
+  }
+
+  /*
+  fonction qui retourne un bool si la case existe et à une bombe
+   */
+  bool _trygetCaseAndHaveBomb(int col, int line){
+    CaseModel c = this._cases[col][line];
+    return this._tryGetCase(c) && this._haveBombe(c);
+  }
+
+  /*
+  renvoie un bool afin de savoir si la case contient une bombe
+   */
+  bool _haveBombe(CaseModel c){
+    return c.hasBomb;
+  }
+  /*
+  permet de récupérer une case si elle existe
+   */
+  bool _tryGetCase(CaseModel c){
+    return true;
+  }
 }
