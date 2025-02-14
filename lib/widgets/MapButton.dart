@@ -7,6 +7,7 @@ import '../viewmodels/GameViewModel.dart';
 class MapButton extends StatelessWidget {
   int _col, _line;
   String nameCase;
+
   MapButton(this._col, this._line, this.nameCase);
 
   @override

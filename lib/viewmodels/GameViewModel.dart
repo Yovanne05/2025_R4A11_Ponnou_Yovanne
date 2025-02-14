@@ -11,22 +11,28 @@ class GameViewModel extends ChangeNotifier{
   }
 
   void click(int col, int line){
-    CaseModel c = this._mapModel.getCaseModel(col, line);
-    if(!c.hasFlag){
-      if(c.hasBomb){
-        c.hasExploded=true;
-        this._mapModel.revealAll();
-      }else{
-        c.hiden=true;
-        this._mapModel.reveal(c);
+    CaseModel? c = this._mapModel.getCaseModel(col, line);
+    if(c!=null){
+      if(!c.hasFlag){
+        if(c.hasBomb){
+          c.hasExploded=true;
+          this._mapModel.revealAll();
+        }else{
+          c.hiden=true;
+          this._mapModel.reveal(c);
+        }
       }
     }
+
     notifyListeners();
   }
 
   void onLongPress(int col, int line){
-    CaseModel c = this._mapModel.getCaseModel(col, line);
-    this._mapModel.toggleFlag(c);
+    CaseModel? c = this._mapModel.getCaseModel(col, line);
+    if(c!=null){
+      this._mapModel.toggleFlag(c);
+    }
+
     notifyListeners();
   }
 
@@ -61,4 +67,5 @@ class GameViewModel extends ChangeNotifier{
     }
   }
 
+  MapModel get mapModel => _mapModel;
 }
