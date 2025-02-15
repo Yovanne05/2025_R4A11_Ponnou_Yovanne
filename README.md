@@ -1,1 +1,1 @@
-# TP2 : Démineur
+# TP2 : Application simple
