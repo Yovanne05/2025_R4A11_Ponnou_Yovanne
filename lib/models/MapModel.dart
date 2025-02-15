@@ -13,7 +13,7 @@ class MapModel {
    */
   void initCases() {
     this._cases = List<List<CaseModel>>.generate(this._nbCol,
-        (i) => List<CaseModel>.generate(this._nbLine, (j) => CaseModel()));
+            (i) => List<CaseModel>.generate(this._nbLine, (j) => CaseModel()));
   }
 
   /*
@@ -21,12 +21,45 @@ class MapModel {
 de la grille
    */
   void initBomb() {
-    for (int i = 0; i < this._nbBomb; i++) {
-      int line = Random().nextInt(this._nbLine);
-      int col = Random().nextInt(this._nbCol);
-      this._cases[line][col].hasBomb = true;
+    Random random = Random();
+    int bombCount = 0;
+
+    while (bombCount < this._nbBomb) {
+      int line = random.nextInt(this._nbLine);
+      int col = random.nextInt(this._nbCol);
+
+      // Vérification si la case ou ses voisines ont déjà une bombe
+      if (!_bombePresente(col, line)) {
+        this._cases[col][line].hasBomb = true;
+        bombCount++; // Incrémenter seulement si une bombe a été placée
+      }
     }
   }
+
+/*
+ * verif bombe autour ou dans case
+ */
+  bool _bombePresente(int col, int line) {
+    List<List<int>> directions = [
+      [-1, -1], [-1, 0], [-1, 1], // haut gauche, haut, haut droite
+      [0, -1], [0, 1], // gauche, droite
+      [1, -1], [1, 0], [1, 1] // bas gauche, bas, bas droite
+    ];
+
+    // veirf case actuelle et voisin
+    for (var dir in directions) {
+      int newLine = line + dir[0];
+      int newCol = col + dir[1];
+
+      if (_tryGetCase(newCol, newLine) && _cases[newCol][newLine].hasBomb) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+
 
   /*
   méthode qui permet d’affecter des chiffres aux cases

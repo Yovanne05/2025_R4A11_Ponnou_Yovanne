@@ -10,10 +10,11 @@ class MapButton extends StatelessWidget {
 
   MapButton(this._col, this._line, this.nameCase);
 
+
+
   @override
   Widget build(BuildContext context) {
     final gameViewModel = context.watch<GameViewModel>();
-
     return InkWell(
       onTap: () {
         gameViewModel.click(_col, _line);

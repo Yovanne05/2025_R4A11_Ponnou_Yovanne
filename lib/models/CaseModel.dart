@@ -3,7 +3,7 @@ class CaseModel{
   bool _hasBomb = false;
   bool _hasExploded = false;
   bool _hasFlag = false;
-  int _number = -1;
+  int _number = 0;
 
   bool get hiden => _hiden;
 
