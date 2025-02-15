@@ -13,17 +13,14 @@ class MapButton extends StatelessWidget {
     final gameViewModel = context.watch<GameViewModel>();
     CaseModel? caseModel = gameViewModel.mapModel.getCaseModel(_col, _line);
 
-    String nameCase = '0';
+    String nameCase = 'default';
 
     if (caseModel != null) {
-      if (caseModel.hasBomb) {
-        nameCase = 'bomb';
-      } else if (caseModel.number > 0) {
+      if (caseModel.hiden) {
         nameCase = caseModel.number.toString();
-      } else if (caseModel.hiden) {
-        nameCase = '0';
-      } else if (caseModel.hasFlag) {
-        nameCase = 'flag';
+      }
+      if(caseModel.hasBomb && caseModel.hiden){
+        nameCase = "bomb";
       }
     }
 

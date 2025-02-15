@@ -16,9 +16,9 @@ class GameViewModel extends ChangeNotifier{
     if (c != null) {
       if (!c.hasFlag) {
         if (c.hasBomb) {
-          this._mapModel.generateMap();
+          c.hasExploded=true;
+          this._mapModel.revealAll();
         } else {
-          c.hiden = true;
           this._mapModel.reveal(c);
         }
       }
@@ -62,7 +62,7 @@ class GameViewModel extends ChangeNotifier{
       case("flag"):
         return Image.asset("assets/flag.jpg", height: 40);
       default:
-        return Image.asset("assets/case0.png", height: 40);
+        return Image.asset("assets/default.png", height: 40);
     }
   }
 
