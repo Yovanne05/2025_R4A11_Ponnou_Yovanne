@@ -16,13 +16,15 @@ class MapButton extends StatelessWidget {
     String nameCase = 'default';
 
     if (caseModel != null) {
-      if (caseModel.hiden) {
+      if (caseModel.hasFlag) {
+        nameCase = "flag";
+      } else if (caseModel.hasBomb && caseModel.hiden) {
+        nameCase = "bomb";
+      } else if (caseModel.hiden) {
         nameCase = caseModel.number.toString();
       }
-      if(caseModel.hasBomb && caseModel.hiden){
-        nameCase = "bomb";
-      }
     }
+
 
     return InkWell(
       onTap: () {

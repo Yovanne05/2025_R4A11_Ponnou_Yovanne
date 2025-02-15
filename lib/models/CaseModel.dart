@@ -15,7 +15,6 @@ class CaseModel{
 
   bool get hasExploded => _hasExploded;
 
-
   set number(int value) {
     _number = value;
   }
