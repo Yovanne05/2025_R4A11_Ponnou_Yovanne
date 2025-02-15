@@ -35,8 +35,7 @@ class GameView extends StatelessWidget {
                       padding: EdgeInsets.only(bottom: 1),
                       child: MapButton(
                         col,
-                        row,
-                        gameViewModel.mapModel.getCaseModel(col, row)?.number.toString() ?? '',
+                        row
                       ),
                     ),
                   ),

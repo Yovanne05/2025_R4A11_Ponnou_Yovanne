@@ -10,30 +10,30 @@ class GameViewModel extends ChangeNotifier{
     this._mapModel.generateMap();
     notifyListeners();
   }
-  void click(int col, int line){
+
+  void click(int col, int line) {
     CaseModel? c = this._mapModel.getCaseModel(col, line);
-    if(c!=null){
-      if(!c.hasFlag){
-        if(c.hasBomb){
+    if (c != null) {
+      if (!c.hasFlag) {
+        if (c.hasBomb) {
           this._mapModel.generateMap();
-        }else{
-          c.hiden=true;
+        } else {
+          c.hiden = true;
           this._mapModel.reveal(c);
         }
       }
     }
-
     notifyListeners();
   }
 
-  void onLongPress(int col, int line){
+  void onLongPress(int col, int line) {
     CaseModel? c = this._mapModel.getCaseModel(col, line);
-    if(c!=null){
+    if (c != null) {
       this._mapModel.toggleFlag(c);
     }
-
     notifyListeners();
   }
+
 
   Image getIcon(String iconName){
     switch(iconName){
