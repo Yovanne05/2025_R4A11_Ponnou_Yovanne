@@ -13,7 +13,7 @@ class MapModel {
    */
   void initCases() {
     this._cases = List<List<CaseModel>>.generate(this._nbCol,
-            (i) => List<CaseModel>.generate(this._nbLine, (j) => CaseModel()));
+        (i) => List<CaseModel>.generate(this._nbLine, (j) => CaseModel(i, j)));
   }
 
   /*
@@ -28,10 +28,9 @@ de la grille
       int line = random.nextInt(this._nbLine);
       int col = random.nextInt(this._nbCol);
 
-      // Vérification si la case ou ses voisines ont déjà une bombe
       if (!_bombePresente(col, line)) {
         this._cases[col][line].hasBomb = true;
-        bombCount++; // Incrémenter seulement si une bombe a été placée
+        bombCount++;
       }
     }
   }
@@ -58,8 +57,6 @@ de la grille
 
     return false;
   }
-
-
 
   /*
   méthode qui permet d’affecter des chiffres aux cases
@@ -124,11 +121,48 @@ autour d’une case
     this.initNumbers();
   }
 
-  /*
+/*
   méthode qui permet de dévoiler une case
-   */
+*/
   void reveal(CaseModel c) {
     c.hiden = true;
+    if (c.number == 0) {
+      _revealAround(c);
+    }
+  }
+
+  /*
+  méthode qui révèle les case autour d'une case révélé
+  */
+  void _revealAround(CaseModel c) {
+    List<List<int>> directions = [
+      [-1, -1], [-1, 0], [-1, 1], // haut gauche, haut, haut droite
+      [0, -1], [0, 1], // gauche, droite
+      [1, -1], [1, 0], [1, 1] // bas gauche, bas, bas droite
+    ];
+
+    List<CaseModel> listesCases = [c];
+
+    while (listesCases.isNotEmpty) {
+      CaseModel currentCase = listesCases.removeLast();
+
+      for (var dir in directions) {
+        int newCol = currentCase.col + dir[0];
+        int newLine = currentCase.line + dir[1];
+
+        if (_tryGetCase(newCol, newLine)) {
+          CaseModel caseModel = _cases[newCol][newLine];
+
+          if (!caseModel.hiden && !caseModel.hasBomb) {
+            caseModel.hiden = true;
+
+            if (caseModel.number == 0) {
+              listesCases.add(caseModel);
+            }
+          }
+        }
+      }
+    }
   }
 
   /*
@@ -171,7 +205,7 @@ autour d’une case
     if (_tryGetCase(col, line)) {
       return _cases[col][line];
     }
-    return null; // Renvoie null si la case est hors limites.
+    return null;
   }
 
   set cases(List<List<CaseModel>> value) {

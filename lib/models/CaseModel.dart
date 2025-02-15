@@ -4,6 +4,13 @@ class CaseModel{
   bool _hasExploded = false;
   bool _hasFlag = false;
   int _number = 0;
+  int _col;
+  int _line;
+
+  CaseModel(this._col, this._line);
+
+
+  int get col => _col;
 
   bool get hiden => _hiden;
 
@@ -33,5 +40,15 @@ class CaseModel{
 
   set hiden(bool value) {
     _hiden = value;
+  }
+
+  int get line => _line;
+
+  set line(int value) {
+    _line = value;
+  }
+
+  set col(int value) {
+    _col = value;
   }
 }
